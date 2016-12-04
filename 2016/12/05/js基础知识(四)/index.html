@@ -3,12 +3,26 @@
 <head>
   <meta charset="utf-8">
   
-  <title>js基础知识总结（四）对象 | muzi&#39;blog</title>
+  <title>js基础知识总结（四）面向对象 | muzi&#39;blog</title>
 
   
   <meta name="author" content="muzi">
   
 
+  
+  <meta name="description" content="对象基本概念
+具体的东西称为对象，每个对象都具有一些静态的特征（属性）和动态的行为（方法）
+
+对象的基本操作
+创建对象
+
+
+使用new关键字创建对象
+
+1var obj=new Object();//新建一个对象并保存在obj中
+
+给对象添加属性：对象名.属性名=’属性值’;
+对象属性的获取：对象.">
   
 
   
@@ -19,7 +33,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
-  <meta property="og:title" content="js基础知识总结（四）对象"/>
+  <meta property="og:title" content="js基础知识总结（四）面向对象"/>
 
   <meta property="og:site_name" content="muzi&#39;blog"/>
 
@@ -64,7 +78,7 @@
 
   
     
-    <h3 class="article-title"><span>js基础知识总结（四）对象</span></h3>
+    <h3 class="article-title"><span>js基础知识总结（四）面向对象</span></h3>
     
   
 
@@ -84,7 +98,49 @@
   <div class="article-content">
     <div class="entry">
       
-        
+        <h2 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h2><h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><ul>
+<li>具体的东西称为对象，每个对象都具有一些静态的特征（属性）和动态的行为（方法）</li>
+</ul>
+<h3 id="对象的基本操作"><a href="#对象的基本操作" class="headerlink" title="对象的基本操作"></a>对象的基本操作</h3><ol>
+<li>创建对象</li>
+</ol>
+<ul>
+<li>使用new关键字创建对象</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> obj=<span class="keyword">new</span> <span class="built_in">Object</span>();<span class="comment">//新建一个对象并保存在obj中</span></div></pre></td></tr></table></figure>
+<ul>
+<li>给对象添加属性：对象名.属性名=’属性值’;</li>
+<li>对象属性的获取：对象.属性</li>
+<li>对象的方法设置：’对象.方法名=function(){};’</li>
+<li>方法也是属性，只是这个属性保存的值是函数</li>
+</ul>
+<ul>
+<li><p>对象的第二种声明方式：对象字面量</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> obj=&#123;&#125;;</div></pre></td></tr></table></figure>
+<ul>
+<li>添加属性的方式跟构造函数创建的方式相同</li>
+<li>可以初始化属性和方法:var obj={name:’张三’,age:18};</li>
+</ul>
+</li>
+<li><p>使用构造函数创建多个对象</p>
+<ul>
+<li>使用new调用的函数就是构造函数</li>
+<li>在构造函数中添加的属性和方法使用this</li>
+<li>new的第二个作用就是将函数内部的this指向创建出来的对象</li>
+</ul>
+</li>
+<li><p>对象的遍历</p>
+<ul>
+<li>数组是一种有序的数据存储形式，对象是一种无序的数据存储形式</li>
+<li>对象遍历:for in</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span>(<span class="keyword">var</span> k <span class="keyword">in</span> obj)&#123;</div><div class="line">  <span class="built_in">console</span>.log(obj[k])<span class="comment">//k是对象的属性名</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="关于this"><a href="#关于this" class="headerlink" title="关于this"></a>关于this</h3><ul>
+<li>this只能在方法函数中使用，这个this指向函数的调用者</li>
+</ul>
+
       
     </div>
 
