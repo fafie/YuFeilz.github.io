@@ -1,0 +1,178 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>js基础知识篇（三）之函数 | muzi&#39;blog</title>
+
+  
+  <meta name="author" content="muzi">
+  
+
+  
+  <meta name="description" content="函数
+概念： 函数时在调用时执行的可重复使用的代码块
+意义：简化代码提高利用率
+作用：便于重用
+声明：
+1234function functionName()&amp;#123;    //代码块    //函数内部的代码自己不会执行，必须调用，在哪里调用就相当于在哪里执行&amp;#125;
+
+函数调用的语法
+1">
+  
+
+  
+  <meta name="keywords" content="js,undefined">
+  
+
+  <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  <meta property="og:title" content="js基础知识篇（三）之函数"/>
+
+  <meta property="og:site_name" content="muzi&#39;blog"/>
+
+  
+  <meta property="og:image" content="/favicon.ico"/>
+  
+
+  <link href="/favicon.ico" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="muzi&#39;blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+</head>
+
+
+<body>
+<div class="blog">
+  <div class="content">
+
+    <header>
+  <div class="site-branding">
+    <h1 class="site-title">
+      <a href="/">muzi&#39;blog</a>
+    </h1>
+    <p class="site-description"></p>
+  </div>
+  <nav class="site-navigation">
+    <ul>
+      
+        <li><a href="/">主页</a></li>
+      
+        <li><a href="/archives">归档</a></li>
+      
+    </ul>
+  </nav>
+</header>
+
+    <main class="site-main posts-loop">
+    <article>
+
+  
+    
+    <h3 class="article-title"><span>js基础知识篇（三）之函数</span></h3>
+    
+  
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/2016/12/01/js基础知识（三）/" rel="bookmark">
+        <time class="entry-date published" datetime="2016-12-01T02:22:24.000Z">
+          2016-12-01
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><ul>
+<li>概念： 函数时在调用时执行的可重复使用的代码块</li>
+<li>意义：简化代码提高利用率</li>
+<li>作用：便于重用</li>
+<li><p>声明：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">functionName</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="comment">//代码块</span></div><div class="line">    <span class="comment">//函数内部的代码自己不会执行，必须调用，在哪里调用就相当于在哪里执行</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>函数调用的语法</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">函数名();</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="函数的参数"><a href="#函数的参数" class="headerlink" title="函数的参数"></a>函数的参数</h2><ul>
+<li>使用参数的意义：当某个函数的功能确定，但是部分功能和数据不一定时，可以通过传递参数来避免多个函数的功能相同</li>
+<li>参数可以分为形参和实参<ul>
+<li>形参用来给实参占位，写在函数声明的小括号中</li>
+<li>实参是实际执行的参数，写在函数调用的小括号中</li>
+</ul>
+</li>
+<li>使用方式<ul>
+<li>形参相当于函数内部声明的变量，只能在函数内部使用；形参本身没有值，值是在函数调用时复制实参的值，然后参与代码执行</li>
+<li>注意：如果在实际调用中如果没有给形参传递实参，那么形参的值为undefined<h2 id="返回值"><a href="#返回值" class="headerlink" title="返回值"></a>返回值</h2><h3 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h3></li>
+</ul>
+</li>
+<li>函数内部的变量外界无法访问，可以通过返回值的形式让外界可以访问，并且返回值只能有一个</li>
+<li>return的第二个作用就是跳出函数，结束函数内的代码执行<h2 id="arguments"><a href="#arguments" class="headerlink" title="arguments"></a>arguments</h2></li>
+<li>arguments是用于保存当前函数所有实参的一个伪数组</li>
+<li>其只能在函数中使用</li>
+<li>伪数组就是不具有数组方法的数组，伪数组可以模拟重载<h2 id="函数参数的值传递"><a href="#函数参数的值传递" class="headerlink" title="函数参数的值传递"></a>函数参数的值传递</h2></li>
+<li>值传递值得就是形参复制实参</li>
+<li>实参是基本类型的时候复制后形参和实参就是完全不同的两个东西，实参是复杂类型时复制后实参和形参就是完全相同的两个东西</li>
+<li>如果参数是引用类型在函数内部修改后不需要返回</li>
+</ul>
+
+      
+    </div>
+
+  </div>
+
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+
+    
+      
+
+    <span class="post-categories">
+      <i class="icon-categories"></i>
+        <a href="/categories/木子心得/">木子心得</a>
+    </span>
+    
+
+    
+    
+
+    <span class="post-tags">
+      <i class="icon-tags"></i>
+        <a href="/tags/木子笔记/">木子笔记</a>
+    </span>
+    
+
+    </div>
+
+    
+  </div>
+</article>
+
+  
+
+
+
+    </main>
+
+    <footer class="site-footer">
+  <p class="site-info">
+    Proudly powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and
+    Theme by <a href="https://github.com/CodeDaraW/Hacker" target="_blank">Hacker</a>
+    </br>
+    
+    &copy; 2016 muzi
+    
+  </p>
+</footer>
+    
+  </div>
+</div>
+</body>
+</html>
