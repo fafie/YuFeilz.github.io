@@ -1,48 +1,73 @@
-extends base
-
-block title
-  title= page.title + ' | ' + config.title
-
-block content
-  .post
-    h1.post-title= page.title
-    .post-meta= page.date.format('ll')
-      if page.categories.length > 0
-        span= ' | '
-        span.category
-          for category in page.categories.toArray()
-            a(href=url_for(category.path))= category.name
-      if theme.busuanzi == true
-        script(src='https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js', async)
-        span#busuanzi_container_page_pv= ' | '
-          span#busuanzi_value_page_pv
-          span= ' ' + __('Hits')
-    if theme.duoshuo
-      a.ds-thread-count(data-thread-key=page.path, href=url_for(page.path) + '#comments')
-    if theme.disqus
-      a.disqus-comment-count(data-disqus-identifier=page.path, href=url_for(page.path) + '#disqus_thread')
-    if page.toc
-      div(class='clear')
-        div(id='toc' class='toc-article')
-          div(class='toc-title')= __('contents')
-          != toc(page.content)
-    .post-content
-      != page.content
-    include _partial/tag
-    include _partial/post_nav
-    if theme.duoshuo
-      div(class='ds-share flat' data-thread-key=page.path, data-title=page.title, data-url=page.permalink)
-         .ds-share-inline
-            ul.ds-share-icons-16
-              li(data-toggle='ds-share-icons-more')
-                a(class='ds-more' href='javascript:void(0);') 分享到：
-              li
-                a(class='ds-weibo' href='javascript:void(0);' data-service='weibo') 微博
-              li
-                a(class='ds-qzone' href='javascript:void(0);' data-service='qzone') QQ空间
-              li
-                a(class='ds-qqt' href='javascript:void(0);' data-service='qqt') 腾讯微博
-              li
-                a(class='ds-wechat' href='javascript:void(0);' data-service='wechat') 微信
-            .ds-share-icons-more
-    include _partial/comments
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>js基础知识篇（三）之函数 | muzi'blog</title><link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Source+Code+Pro"><link rel="stylesheet" type="text/css" href="/css/style.css?v=1.0.0"><link rel="stylesheet" type="text/css" href="/css/highlight.css?v=1.0.0"><link rel="Shortcut Icon" href="/favicon.ico"><link rel="bookmark" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">js基础知识篇（三）之函数</h1><a id="logo" href="/.">muzi'blog</a><p class="description"></p></div><div id="nav-menu"><a href="/." class="current"><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/atom.xml"><i class="fa fa-rss"> 订阅</i></a></div></div><div id="layout" class="layout-g"><div class="layout-l"><div class="content_container"><div class="post"><h1 class="post-title">js基础知识篇（三）之函数</h1><div class="post-meta">Dec 1, 2016<span> | </span><span class="category"><a href="/categories/木子心得/">木子心得</a></span><script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"></span><span> Hits</span></span></div><div class="post-content"><h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><ul>
+<li>概念： 函数时在调用时执行的可重复使用的代码块</li>
+<li>意义：简化代码提高利用率</li>
+<li>作用：便于重用</li>
+<li>声明方式</li>
+</ul>
+<p>第一种:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">functionName</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="comment">//代码块</span></div><div class="line">    <span class="comment">//函数内部的代码自己不会执行，必须调用，在哪里调用就相当于在哪里执行</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>第二种：函数表达式<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> fun=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;</div><div class="line">fun();<span class="comment">//函数表达式的调用必须在函数的声明之后，否则会报错</span></div></pre></td></tr></table></figure></p>
+<ul>
+<li>函数调用的语法</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">函数名();</div></pre></td></tr></table></figure>
+<ul>
+<li>匿名函数<ul>
+<li>匿名函数不能单独使用</li>
+<li>1.自调用函数的形式：自调用函数在书写的位置只能执行一次</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;)()或者</div><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;())</div></pre></td></tr></table></figure>
+<ul>
+<li>回调函数<ul>
+<li>由于函数也是一个值，所以可以将函数作为参数进行传递</li>
+<li>当函数功能中的某一部分不确定，但大体确定了的时候，可以在函数调用的时候根据需求传入参数，参与代码执行</li>
+</ul>
+</li>
+</ul>
+<h2 id="函数的参数"><a href="#函数的参数" class="headerlink" title="函数的参数"></a>函数的参数</h2><ul>
+<li>使用参数的意义：当某个函数的功能确定，但是部分功能和数据不一定时，可以通过传递参数来避免多个函数的功能相同</li>
+<li>参数可以分为形参和实参<ul>
+<li>形参用来给实参占位，写在函数声明的小括号中</li>
+<li>实参是实际执行的参数，写在函数调用的小括号中</li>
+</ul>
+</li>
+<li>使用方式<ul>
+<li>形参相当于函数内部声明的变量，只能在函数内部使用；形参本身没有值，值是在函数调用时复制实参的值，然后参与代码执行</li>
+<li>注意：如果在实际调用中如果没有给形参传递实参，那么形参的值为undefined</li>
+</ul>
+</li>
+</ul>
+<h2 id="返回值"><a href="#返回值" class="headerlink" title="返回值"></a>返回值</h2><h3 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h3><ul>
+<li>函数内部的变量外界无法访问，可以通过返回值的形式让外界可以访问，并且返回值只能有一个</li>
+<li>return的第二个作用就是跳出函数，结束函数内的代码执行</li>
+</ul>
+<h2 id="arguments"><a href="#arguments" class="headerlink" title="arguments"></a>arguments</h2><ul>
+<li>arguments是用于保存当前函数所有实参的一个伪数组</li>
+<li>其只能在函数中使用</li>
+<li>伪数组就是不具有数组方法的数组，伪数组可以模拟重载</li>
+</ul>
+<h2 id="函数参数的值传递"><a href="#函数参数的值传递" class="headerlink" title="函数参数的值传递"></a>函数参数的值传递</h2><ul>
+<li>值传递值得就是形参复制实参</li>
+<li>实参是基本类型的时候复制后形参和实参就是完全不同的两个东西，实参是复杂类型时复制后实参和形参就是完全相同的两个东西</li>
+<li>如果参数是引用类型在函数内部修改后不需要返回</li>
+</ul>
+<h2 id="变量的作用域"><a href="#变量的作用域" class="headerlink" title="变量的作用域"></a>变量的作用域</h2><h3 id="全局作用域"><a href="#全局作用域" class="headerlink" title="全局作用域"></a>全局作用域</h3><ul>
+<li>作用在整个script内部，而不是只在函数的内部起作用</li>
+</ul>
+<h3 id="局部作用域"><a href="#局部作用域" class="headerlink" title="局部作用域"></a>局部作用域</h3><ul>
+<li>在js中只有函数内部称为局部作用于</li>
+<li>在局部作用域内声明的变量叫做局部变量，只能在当前作用域内访问</li>
+<li>如果当前作用域具有一个跟外界同名的变量时就会优先使用当前作用域内的变量</li>
+<li>如果变量的声明不加var，无论变量声明在哪里都是全局变量</li>
+</ul>
+<h2 id="预解析"><a href="#预解析" class="headerlink" title="预解析"></a>预解析</h2><ul>
+<li>找到当前作用域的所有var和function</li>
+<li>当找到var时将变量的声明语句提升到当前作用域的最顶部，变量赋值语句则保留在原地</li>
+<li>找到function的时候整体提升函数体的声明，这也就是为什么函数可以先调用后声明</li>
+<li>但是函数表达式需要遵循变量的提升原则，所以不能先调用后声明</li>
+<li>变量和函数重名，变量没有值返回函数体，变量有值返回变量值</li>
+<li>小作用域可以访问大的作用域内部的变量</li>
+</ul>
+<h2 id="杂碎"><a href="#杂碎" class="headerlink" title="杂碎"></a>杂碎</h2><p>1.函数的声明语句可以在函数的声明前后调用，但是函数表达式只能在函数表达式后面调用<br>2.函数的类型检测使用 typeof 函数名</p>
+</div><div class="tags"><a href="/tags/木子笔记/">木子笔记</a></div><div class="post-nav"><a href="/2016/12/05/js基础知识(四)/" class="pre">js基础知识总结（四）面向对象</a><a href="/2016/11/30/js基础知识（二）/" class="next">js基础知识总结（二）之数组和字符串</a></div></div></div></div><div class="layout-r"><div id="sidebar"><div class="widget"><div id="search-form"><div id="result-mask" class="hide"></div><label><input id="search-key" type="text" autocomplete="off" placeholder="请输入关键字..."/></label><div id="result-wrap" class="hide"><div id="search-result"></div></div><div class="hide"><template id="search-tpl"><div class="item"><a href="/{path}" title="{title}"><div class="title">{title}</div><div class="time">{date}</div><div class="tags">{tags}</div></a></div></template></div></div></div><div class="widget"><div class="widget-title"><i class="fa fa-gui"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/木子心得/">木子心得</a><span class="category-list-count">4</span></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-biao"> 标签</i></div><div class="tagcloud"><a href="/tags/木子笔记/" style="font-size: 15px;">木子笔记</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-fei"> 归档</i></div><ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-xie"> 最新文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/12/05/js基础知识(四)/">js基础知识总结（四）面向对象</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/01/js基础知识（三）/">js基础知识篇（三）之函数</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/11/30/js基础知识（二）/">js基础知识总结（二）之数组和字符串</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/11/30/js基础知识篇（一）/">js基础知识总结（一）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/11/23/hello-world/">Hello World</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-you"> 友情链接</i></div><ul></ul><a href="http://www.example1.com/" title="site-name1" target="_blank">site-name1</a><ul></ul><a href="http://www.example2.com/" title="site-name2" target="_blank">site-name2</a><ul></ul><a href="http://www.example3.com/" title="site-name3" target="_blank">site-name3</a></div></div></div></div><a id="totop" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=1.0.0" async></script><div id="footer"><div class="footer-info"><p><a href="/baidusitemap.xml">网站地图</a> |<a href="/atom.xml">订阅本站</a> |<span>联系博主：<a href="mailto:zhenggchaoo@gmail.com" target="_blank" class="fa fa-email"> </a><a href="http://weibo.com/zhengchaooo" target="_blank" class="fa fa-weibo"></a><a href="https://github.com/chaooo" target="_blank" class="fa fa-github"> </a></span></p><p><span> Copyright &copy;<a href="/." rel="nofollow">muzi</a></span><span> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a></span><span><a rel="nofollow" target="_blank" href="https://github.com/chaooo/hexo-theme-BlueLake"> Theme </a>by<a rel="nofollow" target="_blank" href="https://github.com/chaooo"> Charles.</a></span></p></div></div></div><script type="text/javascript" src="/js/search.json.js?v=1.0.0"></script></body></html>
