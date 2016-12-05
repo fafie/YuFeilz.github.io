@@ -1,320 +1,48 @@
-<!DOCTYPE HTML>
-<html>
-<head>
-  <meta charset="utf-8">
-  
-  <title>js基础知识总结（一） | muzi&#39;blog</title>
+extends base
 
-  
-  <meta name="author" content="muzi">
-  
+block title
+  title= page.title + ' | ' + config.title
 
-  
-  <meta name="description" content="变量变量的作用
-保存临时数据
-
-变量的使用声明变量
-var num;声明变量必须加var。
-
-变量赋值var num;num=100;不推荐在变量的使用过程中改变变量的值
-声明并赋值
-var num=100;
-
-五大基本数据类型数值型
-普通值0-9，特殊值NaN不是一个数值时返回true
-
-字符串类">
-  
-
-  
-  <meta name="keywords" content="js,undefined">
-  
-
-  <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-
-  <meta property="og:title" content="js基础知识总结（一）"/>
-
-  <meta property="og:site_name" content="muzi&#39;blog"/>
-
-  
-  <meta property="og:image" content="/favicon.ico"/>
-  
-
-  <link href="/favicon.ico" rel="icon">
-  <link rel="alternate" href="/atom.xml" title="muzi&#39;blog" type="application/atom+xml">
-  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
-</head>
-
-
-<body>
-<div class="blog">
-  <div class="content">
-
-    <header>
-  <div class="site-branding">
-    <h1 class="site-title">
-      <a href="/">muzi&#39;blog</a>
-    </h1>
-    <p class="site-description"></p>
-  </div>
-  <nav class="site-navigation">
-    <ul>
-      
-        <li><a href="/">主页</a></li>
-      
-        <li><a href="/archives">归档</a></li>
-      
-        <li><a href="/">关于</a></li>
-      
-        <li><a href="/">Tools</a></li>
-      
-    </ul>
-  </nav>
-</header>
-
-    <main class="site-main posts-loop">
-    <article>
-
-  
-    
-    <h3 class="article-title"><span>js基础知识总结（一）</span></h3>
-    
-  
-
-  <div class="article-top-meta">
-    <span class="posted-on">
-      <a href="/2016/11/30/js基础知识篇（一）/" rel="bookmark">
-        <time class="entry-date published" datetime="2016-11-29T16:22:24.000Z">
-          2016-11-30
-        </time>
-      </a>
-    </span>
-  </div>
-
-
-  
-
-  <div class="article-content">
-    <div class="entry">
-      
-        <h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><h3 id="变量的作用"><a href="#变量的作用" class="headerlink" title="变量的作用"></a>变量的作用</h3><ul>
-<li>保存临时数据</li>
-</ul>
-<h3 id="变量的使用"><a href="#变量的使用" class="headerlink" title="变量的使用"></a>变量的使用</h3><h3 id="声明变量"><a href="#声明变量" class="headerlink" title="声明变量"></a>声明变量</h3><ul>
-<li>var num;声明变量必须加<em>var</em>。</li>
-</ul>
-<h3 id="变量赋值"><a href="#变量赋值" class="headerlink" title="变量赋值"></a>变量赋值</h3><p>var num;num=100;不推荐在变量的使用过程中改变变量的值</p>
-<h3 id="声明并赋值"><a href="#声明并赋值" class="headerlink" title="声明并赋值"></a>声明并赋值</h3><ul>
-<li>var num=100;</li>
-</ul>
-<h2 id="五大基本数据类型"><a href="#五大基本数据类型" class="headerlink" title="五大基本数据类型"></a>五大基本数据类型</h2><h3 id="数值型"><a href="#数值型" class="headerlink" title="数值型"></a>数值型</h3><ul>
-<li>普通值0-9，特殊值NaN不是一个数值时返回true</li>
-</ul>
-<h3 id="字符串类型"><a href="#字符串类型" class="headerlink" title="字符串类型"></a>字符串类型</h3><ul>
-<li>字符串必须写双引号或单引号，双引号或单引号必须成对出现</li>
-</ul>
-<h3 id="布尔类型"><a href="#布尔类型" class="headerlink" title="布尔类型"></a>布尔类型</h3><ul>
-<li>返回结果只有true或false</li>
-</ul>
-<h3 id="undefined"><a href="#undefined" class="headerlink" title="undefined"></a>undefined</h3><ul>
-<li>变量声明未赋值时变量的值和类型都为undefined，变量没有声明直接使用会报错（is not defined）</li>
-</ul>
-<h3 id="null"><a href="#null" class="headerlink" title="null"></a>null</h3><ul>
-<li>空</li>
-</ul>
-<h2 id="数据类型转换"><a href="#数据类型转换" class="headerlink" title="数据类型转换"></a>数据类型转换</h2><h3 id="其他类型转换为字符串类型"><a href="#其他类型转换为字符串类型" class="headerlink" title="其他类型转换为字符串类型"></a>其他类型转换为字符串类型</h3><ul>
-<li>隐式转换<ul>
-<li>使用+操作，为了不改变原有字符串的含义，一般加上空字符串</li>
-</ul>
-</li>
-<li>显示转换<ul>
-<li>变量.tOString();null和undefined没有toString方法，只能有String方法转换</li>
-<li>String(变量)，其内部实际上也是调用toString方法</li>
-</ul>
-</li>
-</ul>
-<h3 id="其他类型转换成数值类型"><a href="#其他类型转换成数值类型" class="headerlink" title="其他类型转换成数值类型"></a>其他类型转换成数值类型</h3><ul>
-<li><p>隐式转换</p>
-<p>隐式转换的方法有五种</p>
-<ul>
-<li>+：+号的书写位置需要注意，写在需要转换的代码前边。例如console.log(+”100”);</li>
-<li>-:用法如下：console.log(“100”-0);</li>
-<li><em>:用法如下：console.log(“100”</em>1);</li>
-<li>/:用法如下：console.log(“100”/1);</li>
-<li>%:用法如下：cconsole.log(“100”%101):注意被除数比除数大</li>
-</ul>
-</li>
-<li><p>显示换换</p>
-<p>显示转换的方法有三种</p>
-<ul>
-<li>第一种：Number(变量)；只可以转换纯数字，如果变量含有非数字部分返回NaN</li>
-<li>第二种：parseInt(变量)；从左往右取值，取到不是数字为止，如果一开始就不是数字返回NaN</li>
-<li>第三种：parseFloat(变量)；返回小数<h3 id="其他类型转换为布尔类型"><a href="#其他类型转换为布尔类型" class="headerlink" title="其他类型转换为布尔类型"></a>其他类型转换为布尔类型</h3></li>
-</ul>
-</li>
-<li>隐式转换<ul>
-<li>！！</li>
-</ul>
-</li>
-<li>显示转换<ul>
-<li>boolean();其他类型转换为布尔值结果</li>
-<li>转换结果为false的有：0,””,undefined,null,NaN,false<h2 id="基本数据类型和复杂数据类型"><a href="#基本数据类型和复杂数据类型" class="headerlink" title="基本数据类型和复杂数据类型"></a>基本数据类型和复杂数据类型</h2>1.基本数据类型又称为值类型，复杂类型又称为引用类型<br>2.基本类型保存在栈中，复杂类型保存在堆中，栈中保存的是地址指针<br>3.基本类型值的复制，直接复制栈中保存的值就可以了；复杂类型的复制实际上复制的是栈中的内容，是一个指针，复制前后两者指向堆中的同一个空间<br>4.想要复制一个数组中的内容需要遍历，一项一项进行复制，对象和数组的复制方式一样。<h2 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h2></li>
-</ul>
-</li>
-</ul>
-<h3 id="算数运算符"><a href="#算数运算符" class="headerlink" title="算数运算符"></a>算数运算符</h3><ul>
-<li>+，-，*，/，%<h3 id="逻辑运算符"><a href="#逻辑运算符" class="headerlink" title="逻辑运算符"></a>逻辑运算符</h3></li>
-<li><p>当操作数为布尔类型时：</p>
-<p>&amp;&amp;逻辑与：同真则为真，其余都为假<br>||逻辑或：同假才为假，其余为真<br>！逻辑非，取反  </p>
-</li>
-<li><p>短路操作：如果操作数不是布尔值，先隐式转换，然后返回决定结果的那个操作数</p>
-<h3 id="一元运算符"><a href="#一元运算符" class="headerlink" title="一元运算符"></a>一元运算符</h3></li>
-<li><p>++自增，–自减</p>
-</li>
-<li>注意运算符前置和后置的区别</li>
-<li><p>++/–:前置先运算后自增/减、后置先自增/减在运算</p>
-<h3 id="比较运算符"><a href="#比较运算符" class="headerlink" title="比较运算符"></a>比较运算符</h3></li>
-<li><blockquote>
-<p>,&lt;,&gt;=,&lt;=返回的结果是布尔值</p>
-<h3 id="相等和不等"><a href="#相等和不等" class="headerlink" title="相等和不等"></a>相等和不等</h3></blockquote>
-</li>
-<li><p>==相等，===全等，！=不等，！==不全等</p>
-</li>
-</ul>
-<h2 id="运算符的优先级"><a href="#运算符的优先级" class="headerlink" title="运算符的优先级"></a>运算符的优先级</h2><ul>
-<li>从高到低：()&gt;一元运算符&gt;算数运算符&gt;比较运算符&gt;相等运算符&gt;逻辑运算符</li>
-</ul>
-<h3 id="数据类型判断使用typeof"><a href="#数据类型判断使用typeof" class="headerlink" title="数据类型判断使用typeof"></a>数据类型判断使用typeof</h3><ul>
-<li>typeof 的使用<br>1.typeof 变量<br>2.typeof(变量)</li>
-</ul>
-<h2 id="程序的执行结构"><a href="#程序的执行结构" class="headerlink" title="程序的执行结构"></a>程序的执行结构</h2><h3 id="顺序"><a href="#顺序" class="headerlink" title="顺序"></a>顺序</h3><h3 id="循环"><a href="#循环" class="headerlink" title="循环"></a>循环</h3><ul>
-<li><p>for循环</p>
-<ul>
-<li>语法：<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span>(初始化循环变量；循环条件；循环条件更新)&#123;</div><div class="line">  <span class="comment">//循环内部代码执行</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>while循环</p>
-<ul>
-<li>适用于无次数限制的循环，while也可以代替for，但是用起来比较复杂</li>
-<li>语法：<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> i=<span class="number">1</span>;<span class="comment">//初始化循环条件</span></div><div class="line"><span class="keyword">while</span>(i&lt;=<span class="number">100</span>)&#123;<span class="comment">//控制循环条件</span></div><div class="line">  <span class="comment">//满足循环条件时执行的代码段</span></div><div class="line">  i++;<span class="comment">//更新循环条件</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>dowhile循环</p>
-<ul>
-<li>语法：<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">do</span>&#123;</div><div class="line">  <span class="comment">//无论如何先执行一次代码</span></div><div class="line">&#125;<span class="keyword">while</span>(条件);<span class="comment">//注意最后的分号不能少</span></div></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>循环总结</p>
-<ul>
-<li>for循环适用于有规律的有次数限制的代码段，while和dowhile执行次数不受限制。每一种循环都可以互换使用<h3 id="选择"><a href="#选择" class="headerlink" title="选择"></a>选择</h3><h4 id="if语句"><a href="#if语句" class="headerlink" title="if语句"></a>if语句</h4></li>
-</ul>
-<ul>
-<li>语法：<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span>(执行条件)&#123;</div><div class="line">  <span class="comment">//条件为真执行内部代码，若条件不是bool表达式，先进行隐式转换，再判断</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>if的三种结构</p>
-<ul>
-<li><p>单if结构</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span>()&#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>ifelse结构</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span>(条件)&#123;</div><div class="line">  <span class="comment">//满足条件执行的代码</span></div><div class="line">&#125;<span class="keyword">else</span>&#123;</div><div class="line">  <span class="comment">//条件不满足时执行的代码</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>多if结构<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span>(条件表达式<span class="number">1</span>)&#123;</div><div class="line">  <span class="comment">//满足条件表达式1时执行的代码</span></div><div class="line">&#125;<span class="keyword">else</span> <span class="keyword">if</span>(条件表达式<span class="number">2</span>)&#123;</div><div class="line">  <span class="comment">//满足条件表达式2时执行的代码</span></div><div class="line">&#125;<span class="keyword">else</span> <span class="keyword">if</span>(条件表达式<span class="number">3</span>)&#123;</div><div class="line">  <span class="comment">//满足条件表达式3时执行的代码</span></div><div class="line">&#125;<span class="keyword">else</span>&#123;</div><div class="line">  <span class="comment">//当所有条件都不满足时执行的代码</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h4 id="swich语句"><a href="#swich语句" class="headerlink" title="swich语句"></a>swich语句</h4><p>switch 语句一般进行单值判断，但也可以进行范围判断，使用switch进行范围判断时条件为true，条件与case之间的比较是全等比较<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">switch</span>(条件表达式)&#123;</div><div class="line">  <span class="keyword">case</span> value1：</div><div class="line">  <span class="comment">//满足value1时执行的语句</span></div><div class="line">  <span class="keyword">break</span>;</div><div class="line">  <span class="keyword">case</span> value2：</div><div class="line">  <span class="comment">//满足value2时执行的语句</span></div><div class="line">  <span class="keyword">break</span>;</div><div class="line">  <span class="keyword">case</span> value1：</div><div class="line">  <span class="comment">//满足value1时执行的语句</span></div><div class="line">  <span class="keyword">break</span>;</div><div class="line">  .....</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h4 id="break和continue"><a href="#break和continue" class="headerlink" title="break和continue"></a>break和continue</h4><ul>
-<li>break的作用是跳出循环，执行循环后的代码</li>
-<li>continue的作用是结束本次循环，执行下一次循环代码（从循环顶部开始）</li>
-</ul>
-<h4 id="三元运算"><a href="#三元运算" class="headerlink" title="三元运算"></a>三元运算</h4><ul>
-<li>语法：<br>条件表达式?表达式1:表达式2</li>
-<li>含义：如果条件表达式为真返回表达式1，否则返回表达式2</li>
-</ul>
-
-      
-    </div>
-
-  </div>
-
-  <div class="article-footer">
-    <div class="article-meta pull-left">
-
-    
-      
-
-    <span class="post-categories">
-      <i class="icon-categories"></i>
-        <a href="/categories/木子心得/">木子心得</a>
-    </span>
-    
-
-    
-    
-
-    <span class="post-tags">
-      <i class="icon-tags"></i>
-        <a href="/tags/木子笔记/">木子笔记</a>
-    </span>
-    
-
-    </div>
-
-    
-  </div>
-</article>
-
-  
-	<div id="comment">
-	
-	
-	<!-- 多说评论框 start -->
-	 <div class="ds-thread" data-thread-key="/2016/11/30/js基础知识篇（一）/" data-title="js基础知识总结（一）" data-url="http://yoursite.com/2016/11/30/js基础知识篇（一）/"></div>
-	<!-- 多说评论框 end -->
-	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-	<script type="text/javascript">
-	var duoshuoQuery = {short_name:""};
-	  (function() {
-	    var ds = document.createElement('script');
-	    ds.type = 'text/javascript';ds.async = true;
-	    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-	    ds.charset = 'UTF-8';
-	    (document.getElementsByTagName('head')[0] 
-	     || document.getElementsByTagName('body')[0]).appendChild(ds);
-	  })();
-	  </script>
-	<!-- 多说公共JS代码 end -->
-	
-	</div>
-
-
-
-
-    </main>
-
-    <footer class="site-footer">
-  <p class="site-info">
-    Proudly powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and
-    Theme by <a href="https://github.com/CodeDaraW/Hacker" target="_blank">Hacker</a>
-    </br>
-    
-    &copy; 2016 muzi
-    
-  </p>
-</footer>
-    
-  </div>
-</div>
-</body>
-</html>
+block content
+  .post
+    h1.post-title= page.title
+    .post-meta= page.date.format('ll')
+      if page.categories.length > 0
+        span= ' | '
+        span.category
+          for category in page.categories.toArray()
+            a(href=url_for(category.path))= category.name
+      if theme.busuanzi == true
+        script(src='https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js', async)
+        span#busuanzi_container_page_pv= ' | '
+          span#busuanzi_value_page_pv
+          span= ' ' + __('Hits')
+    if theme.duoshuo
+      a.ds-thread-count(data-thread-key=page.path, href=url_for(page.path) + '#comments')
+    if theme.disqus
+      a.disqus-comment-count(data-disqus-identifier=page.path, href=url_for(page.path) + '#disqus_thread')
+    if page.toc
+      div(class='clear')
+        div(id='toc' class='toc-article')
+          div(class='toc-title')= __('contents')
+          != toc(page.content)
+    .post-content
+      != page.content
+    include _partial/tag
+    include _partial/post_nav
+    if theme.duoshuo
+      div(class='ds-share flat' data-thread-key=page.path, data-title=page.title, data-url=page.permalink)
+         .ds-share-inline
+            ul.ds-share-icons-16
+              li(data-toggle='ds-share-icons-more')
+                a(class='ds-more' href='javascript:void(0);') 分享到：
+              li
+                a(class='ds-weibo' href='javascript:void(0);' data-service='weibo') 微博
+              li
+                a(class='ds-qzone' href='javascript:void(0);' data-service='qzone') QQ空间
+              li
+                a(class='ds-qqt' href='javascript:void(0);' data-service='qqt') 腾讯微博
+              li
+                a(class='ds-wechat' href='javascript:void(0);' data-service='wechat') 微信
+            .ds-share-icons-more
+    include _partial/comments

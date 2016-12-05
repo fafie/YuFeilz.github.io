@@ -1,146 +1,28 @@
-<!DOCTYPE HTML>
-<html>
-<head>
-  <meta charset="utf-8">
-  
-  <title>about | muzi&#39;blog</title>
-
-  
-  <meta name="author" content="muzi">
-  
-
-  
-
-  
-
-  <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-
-  <meta property="og:title" content="about"/>
-
-  <meta property="og:site_name" content="muzi&#39;blog"/>
-
-  
-  <meta property="og:image" content="/favicon.ico"/>
-  
-
-  <link href="/favicon.ico" rel="icon">
-  <link rel="alternate" href="/atom.xml" title="muzi&#39;blog" type="application/atom+xml">
-  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
-</head>
-
-
-<body>
-<div class="blog">
-  <div class="content">
-
-    <header>
-  <div class="site-branding">
-    <h1 class="site-title">
-      <a href="/">muzi&#39;blog</a>
-    </h1>
-    <p class="site-description"></p>
-  </div>
-  <nav class="site-navigation">
-    <ul>
-      
-        <li><a href="/">主页</a></li>
-      
-        <li><a href="/archives">归档</a></li>
-      
-        <li><a href="/">关于</a></li>
-      
-        <li><a href="/">Tools</a></li>
-      
-    </ul>
-  </nav>
-</header>
-
-    <main class="site-main posts-loop">
-    <article>
-
-  
-    
-    <h3 class="article-title"><span>about</span></h3>
-    
-  
-
-  <div class="article-top-meta">
-    <span class="posted-on">
-      <a href="/about/index.html" rel="bookmark">
-        <time class="entry-date published" datetime="2016-12-04T16:31:50.000Z">
-          2016-12-05
-        </time>
-      </a>
-    </span>
-  </div>
-
-
-  
-
-  <div class="article-content">
-    <div class="entry">
-      
-        
-      
-    </div>
-
-  </div>
-
-  <div class="article-footer">
-    <div class="article-meta pull-left">
-
-    
-
-    
-
-    </div>
-
-    
-  </div>
-</article>
-
-  
-	<div id="comment">
-	
-	
-	<!-- 多说评论框 start -->
-	 <div class="ds-thread" data-thread-key="/about/index.html" data-title="about" data-url="http://yoursite.com/about/index.html"></div>
-	<!-- 多说评论框 end -->
-	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-	<script type="text/javascript">
-	var duoshuoQuery = {short_name:""};
-	  (function() {
-	    var ds = document.createElement('script');
-	    ds.type = 'text/javascript';ds.async = true;
-	    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-	    ds.charset = 'UTF-8';
-	    (document.getElementsByTagName('head')[0] 
-	     || document.getElementsByTagName('body')[0]).appendChild(ds);
-	  })();
-	  </script>
-	<!-- 多说公共JS代码 end -->
-	
-	</div>
-
-
-
-
-    </main>
-
-    <footer class="site-footer">
-  <p class="site-info">
-    Proudly powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and
-    Theme by <a href="https://github.com/CodeDaraW/Hacker" target="_blank">Hacker</a>
-    </br>
-    
-    &copy; 2016 muzi
-    
-  </p>
-</footer>
-    
-  </div>
-</div>
-</body>
-</html>
+extends base
+block title
+  title= page.title + ' | ' + config.title
+block content
+  .post
+    h1.post-title= page.title
+    .post-content
+      if page.content
+        != page.content
+      else
+        .author-page
+          a.photo(href="javascript:;")
+            img(src='#{theme.about.photo_url}')
+          .author
+            p
+              i.fa.fa-user name：
+              | #{config.author}
+            p
+              i.fa.fa-email email：
+              a(href="mailto:#{theme.about.email}",target="_blank")= theme.about.email
+            p
+              i.fa.fa-weibo weibo：
+              a(href="#{theme.about.weibo_url}",target="_blank")= theme.about.weibo_name
+            p
+              i.fa.fa-github github：
+              a(href="#{theme.about.github_url}",target="_blank")= theme.about.github_name
+    if page.comments
+      include _partial/comments
