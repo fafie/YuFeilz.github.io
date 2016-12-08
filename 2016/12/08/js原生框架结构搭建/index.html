@@ -1,0 +1,73 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="running"><title>js原生框架结构搭建 | muzi'blog</title><link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Source+Code+Pro"><link rel="stylesheet" type="text/css" href="/css/style.css?v=1.0.0"><link rel="stylesheet" type="text/css" href="/css/highlight.css?v=1.0.0"><link rel="Shortcut Icon" href="/favicon.ico"><link rel="bookmark" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">js原生框架结构搭建</h1><a id="logo" href="/.">muzi'blog</a><p class="description"></p></div><div id="nav-menu"><a href="/." class="current"><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/atom.xml"><i class="fa fa-rss"> 订阅</i></a></div></div><div id="layout" class="layout-g"><div class="layout-l"><div class="content_container"><div class="post"><h1 class="post-title">js原生框架结构搭建</h1><div class="post-meta">Dec 8, 2016<span> | </span><span class="category"><a href="/categories/js原生框架/">js原生框架</a></span><script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"></span><span> Hits</span></span></div><div class="post-content"><h3 id="获取指定DOM下所有子元素"><a href="#获取指定DOM下所有子元素" class="headerlink" title="获取指定DOM下所有子元素"></a>获取指定DOM下所有子元素</h3><ul>
+<li>在框架内部，遍历子节点，应该使用firstChild和nextSibling方式。</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="number">1.</span>使用childNodes方式</div><div class="line"><span class="number">2.</span>实现思路：通过childNodes获取父元素所有的字节点然后再将所有的元素节点筛选出来</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getChid</span>(<span class="params">parent</span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> arr=[],</div><div class="line">    elems=parent.childNodes;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;elems.length;i++)&#123;</div><div class="line">        <span class="keyword">if</span>(elems[i].nodeType===<span class="number">1</span>)&#123;</div><div class="line">            arr.push(elems[i]);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> arr;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="number">2.</span>使用firstChild和nextSibling实现方式（推荐使用）</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getChid</span>(<span class="params">parent</span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> arr=[],</div><div class="line">    elem=parent.firstChild;</div><div class="line">    <span class="comment">//可以使用while循环进行改写</span></div><div class="line">    <span class="keyword">for</span>(;elem;elem;elem=elem.nextSibling)&#123;</div><div class="line">        <span class="keyword">if</span>(elem.nodeType===<span class="number">1</span>) arr.push(elem);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> arr;</div><div class="line">    </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="框架结构"><a href="#框架结构" class="headerlink" title="框架结构"></a>框架结构</h3><ol>
+<li><p>在编写框架的时候，为了防止变量污染，尽量使用沙箱模式 封装框架</p>
+<ul>
+<li>在沙箱内部，如果经常使用全局变量或全局对象的话，最好的做法就是将它们当做实参传入沙箱内。</li>
+</ul>
+</li>
+<li><p>核心函数为myjquery，相当于jQuery。最终要暴露给用户使用的</p>
+</li>
+<li><p>实现myjquery函数，使用的是 工厂模式 来创建对象。好处：用户 new 或 不 new 都可以得到正确的对象</p>
+</li>
+<li><p>init构造函数 的 位置</p>
+<ul>
+<li><p>如果放在沙箱内部，用户是无法修改或重写的。所以要容纳更改用户，尽量将构造函数暴露给用户</p>
+</li>
+<li><p>可以把构造函数放在myjqueryt函数上，也可以放在myjquery函数原型上。</p>
+</li>
+<li><p>处于jQuery之父，在写简单继承模式时，将构造函数放在其原型上。那么在编写框架时，即延续下来了</p>
+</li>
+</ul>
+</li>
+<li><p>init创建出来的对象，最终继承自myjquery.prototype。所以可以将init对象称为myjquery对象。</p>
+</li>
+<li><p>由于暴露给用户 的 是 myjquery和 其原型。所以在扩展成员时，只能在这两个对象上扩展。<br> 而在函数对象上扩展的成员 为 静态成员。可以直接通过函数名字来访问。但是，在原型上的成员，<br> 必须创建实例来访问。因此为了实现init对象可以访问 myjquery原型上的成员，就基于原型来实现继承。</p>
+</li>
+<li><p>完善init构造函数</p>
+<ul>
+<li>selector类型：<ul>
+<li>无效值： null undefined ‘’ false</li>
+<li>字符串<ul>
+<li>选择器：     ‘div’ 根据选择器筛选dom元素，并以伪数组形式 存储在this上</li>
+<li>html字符串 ‘<p>123</p><p>456</p>‘ ‘<p>‘ 将html字符串 转换成 html元素</p></li>
+</ul>
+</li>
+<li>DOM节点 </li>
+<li>DOM数组（伪数组） </li>
+<li>function：入口函数 DOMContentLoaded<ul>
+<li>使用静态属性isReady 存储 dom树是否加载完毕</li>
+<li>判断isReady值， 如果为true，就直接执行传入的函数。</li>
+<li>否则，就给document的DOMContentLoaded事件绑定处理程序，在处理程序中，先将isReady赋值为true，在执行传入的函数。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>如何判断字符串为html字符串，必须满足一下条件：</p>
+<ul>
+<li>以’&lt;’开头</li>
+<li>以’&gt;’结尾</li>
+<li>最小长度为3</li>
+</ul>
+</li>
+<li><p>如何判断像数组（数组和伪数组）</p>
+<ul>
+<li>用length属性去判断，若具有length属性 表示为 像数组类型</li>
+<li>除了window对象以及函数对象</li>
+<li><p>{length: 1} {4: “123”, length: 5} 稀疏数组</p>
+</li>
+<li><p>如果为真数组，返回true</p>
+</li>
+<li>如果length属性值为0（除了window对象以及函数对象），返回true</li>
+<li>如果length属性值&gt;0, 如果对象 具有 length - 1 索引，返回true</li>
+</ul>
+</li>
+<li><p>全局对象 window特性：有一个window属性 引用 自身。</p>
+</li>
+</ol>
+</div><div class="tags"><a href="/tags/木子笔记/">木子笔记</a></div><div class="post-nav"><a href="/2016/12/07/js基础（五）之字符串/" class="next">js基础（五）之字符串</a></div></div></div></div><div class="layout-r"><div id="sidebar"><div class="widget"><div id="search-form"><div id="result-mask" class="hide"></div><label><input id="search-key" type="text" autocomplete="off" placeholder="请输入关键字..."/></label><div id="result-wrap" class="hide"><div id="search-result"></div></div><div class="hide"><template id="search-tpl"><div class="item"><a href="/{path}" title="{title}"><div class="title">{title}</div><div class="time">{date}</div><div class="tags">{tags}</div></a></div></template></div></div></div><div class="widget"><div class="widget-title"><i class="fa fa-gui"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/js/">js</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/js原生框架/">js原生框架</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/木子心得/">木子心得</a><span class="category-list-count">4</span></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-biao"> 标签</i></div><div class="tagcloud"><a href="/tags/木子笔记/" style="font-size: 15px;">木子笔记</a> <a href="/tags/木子笔记-js/" style="font-size: 15px;">木子笔记  js</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-fei"> 归档</i></div><ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-xie"> 最新文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/12/08/js原生框架结构搭建/">js原生框架结构搭建</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/07/js基础（五）之字符串/">js基础（五）之字符串</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/05/js基础知识(四)/">js基础知识总结（四）面向对象</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/01/js基础知识（三）/">js基础知识篇（三）之函数</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/11/30/js基础知识（二）/">js基础知识总结（二）之数组</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/11/30/js基础知识篇（一）/">js基础知识总结（一）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/11/23/hello-world/">Hello World</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-you"> 友情链接</i></div><ul></ul><a href="http://www.example1.com/" title="site-name1" target="_blank">site-name1</a><ul></ul><a href="http://www.example2.com/" title="site-name2" target="_blank">site-name2</a><ul></ul><a href="http://www.example3.com/" title="site-name3" target="_blank">site-name3</a></div></div></div></div><a id="totop" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=1.0.0" async></script><div id="footer"><div class="footer-info"><p><a href="/baidusitemap.xml">网站地图</a> |<a href="/atom.xml">订阅本站</a> |<span>联系博主：<a href="mailto:zhenggchaoo@gmail.com" target="_blank" class="fa fa-email"> </a><a href="http://weibo.com/zhengchaooo" target="_blank" class="fa fa-weibo"></a><a href="https://github.com/chaooo" target="_blank" class="fa fa-github"> </a></span></p><p><span> Copyright &copy;<a href="/." rel="nofollow">muzi</a></span><span> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a></span><span><a rel="nofollow" target="_blank" href="https://github.com/chaooo/hexo-theme-BlueLake"> Theme </a>by<a rel="nofollow" target="_blank" href="https://github.com/chaooo"> Charles.</a></span></p></div></div></div><script type="text/javascript" src="/js/search.json.js?v=1.0.0"></script></body></html>
